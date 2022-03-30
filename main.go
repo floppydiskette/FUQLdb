@@ -304,7 +304,7 @@ func (ctx *Context) getTable(dbName string, tableName string) *Table {
 
 func (ctx *Context) getEntry(key interface{}) *Entry {
 	// make sure user has read permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return nil
 	}
@@ -326,7 +326,7 @@ func (ctx *Context) getEntry(key interface{}) *Entry {
 
 func (ctx *Context) addEntry(key interface{}, value interface{}) {
 	// make sure user has write permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -348,7 +348,7 @@ func (ctx *Context) addEntry(key interface{}, value interface{}) {
 
 func (ctx *Context) tellEntryToFuckOff(key interface{}) {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -370,7 +370,7 @@ func (ctx *Context) tellEntryToFuckOff(key interface{}) {
 
 func (ctx *Context) changeEntry(key interface{}, value interface{}) {
 	// make sure user has write permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -392,7 +392,7 @@ func (ctx *Context) changeEntry(key interface{}, value interface{}) {
 
 func (ctx *Context) addTable(name string) {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -414,7 +414,7 @@ func (ctx *Context) addTable(name string) {
 
 func (ctx *Context) tellTableToFuckOff(name string) {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -436,7 +436,7 @@ func (ctx *Context) tellTableToFuckOff(name string) {
 
 func (ctx *Context) getDBNames() []string {
 	// make sure user has read permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return nil
 	}
@@ -459,7 +459,7 @@ func (ctx *Context) getDBNames() []string {
 
 func (ctx *Context) getTableNames(dbName string) []string {
 	// make sure user has read permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return nil
 	}
@@ -486,7 +486,7 @@ func (ctx *Context) getTableNames(dbName string) []string {
 
 func (ctx *Context) getEntryKeys() []interface{} {
 	// make sure user has read permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return nil
 	}
@@ -510,7 +510,7 @@ func (ctx *Context) getEntryKeys() []interface{} {
 
 func (ctx *Context) getEntryValues() []interface{} {
 	// make sure user has read permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return nil
 	}
@@ -534,7 +534,7 @@ func (ctx *Context) getEntryValues() []interface{} {
 
 func (ctx *Context) addDatabase(name string) {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -554,7 +554,7 @@ func (ctx *Context) addDatabase(name string) {
 
 func (ctx *Context) tellDatabaseToFuckOff(name string) {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return
 	}
@@ -600,7 +600,7 @@ func (ctx *Context) useTable(name string) error {
 
 func (ctx *Context) createUser(name string, password string) error {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return errors.New("user not found")
 	}
@@ -629,7 +629,7 @@ func (ctx *Context) createUser(name string, password string) error {
 
 func (ctx *Context) deleteUser(name string) error {
 	// make sure user has admin permissions
-	user := ctx.getDB("users").getTable("user").getEntry(ctx.UserInUse)
+	user := ctx.getDB("users").getTable(dbs[ctx.DatabaseInUse].Name).getEntry(ctx.UserInUse)
 	if user == nil {
 		return errors.New("user not found")
 	}
